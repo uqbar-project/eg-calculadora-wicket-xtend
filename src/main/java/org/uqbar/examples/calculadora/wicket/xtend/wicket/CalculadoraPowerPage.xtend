@@ -17,8 +17,8 @@ class CalculadoraPowerPage extends WebPage {
 	
 	new() {
 		defaultModel = (new CalculadoraDivision).asCompoundModel
-		this.<CalculadoraDivision> form("calculadoraForm") [
-			
+		this.form("calculadoraForm") [
+
 			textField("dividendo")
 			textField("divisor")
 			label("resultado")
