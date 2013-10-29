@@ -36,5 +36,4 @@ class CalculadoraDivision implements Serializable {
 		this._divisor = divisor;
 	}
 	
-	
 }

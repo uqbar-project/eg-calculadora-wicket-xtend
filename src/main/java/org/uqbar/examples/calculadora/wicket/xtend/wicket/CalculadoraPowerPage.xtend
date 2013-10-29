@@ -26,7 +26,7 @@ class CalculadoraPowerPage extends WebPage {
 			
 			button("dividir") [
 				onClick = [| calculadora.dividir ]
-			]			
+			]
 		]
 	}
 	

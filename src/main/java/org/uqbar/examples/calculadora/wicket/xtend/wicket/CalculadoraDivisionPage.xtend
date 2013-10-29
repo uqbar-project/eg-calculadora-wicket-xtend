@@ -21,18 +21,13 @@ class CalculadoraDivisionPage extends WebPage {
 		val form = new Form<CalculadoraDivision>("calculadoraForm");
 		this.addChild(form)
 		
-		this.addChild(form)
-
 		this.addFields(form)
 		this.addActions(form)
 	}
 	
 	def addFields(Form<CalculadoraDivision> form) {
 		form.addChild(new TextField<Double>("dividendo"))
-		
-		val divisorTextField = new TextField<Double>("divisor")
-		form.addChild(divisorTextField)
-		
+		form.addChild(new TextField<Double>("divisor"))
 		form.addChild(new Label("resultado"))
 		form.addChild(new FeedbackPanel("feedbackPanel"))
 	}
@@ -46,5 +41,5 @@ class CalculadoraDivisionPage extends WebPage {
 	def getCalculadora() {
 		this.getDefaultModelObject() as CalculadoraDivision;
 	}
-	
+
 }
