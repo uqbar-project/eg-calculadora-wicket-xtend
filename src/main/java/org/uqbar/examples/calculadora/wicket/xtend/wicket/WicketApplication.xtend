@@ -8,7 +8,7 @@ import org.apache.wicket.protocol.http.WebApplication
 class WicketApplication extends WebApplication {
 	
 	override getHomePage() {
-		CalculadoraPowerPage
+		CalculadoraDivisionPage
 	}
 	
 }

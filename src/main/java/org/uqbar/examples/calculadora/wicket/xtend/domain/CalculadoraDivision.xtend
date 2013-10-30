@@ -25,10 +25,14 @@ class CalculadoraDivision implements Serializable {
 	}
 
 	def void setDividendo(double dividendo) {
-		if (dividendo == -1) {
-			throw new UserException("No se puede user el -1!");
-		}
+		this.validarDividendo(dividendo)
 		this._dividendo = dividendo;
+	}
+
+	def void validarDividendo(Double dividendo) {
+		if (dividendo == -1) {
+			throw new UserException("No se puede usar el -1!");
+		}
 	}
 
 	def void setDivisor(double divisor) {

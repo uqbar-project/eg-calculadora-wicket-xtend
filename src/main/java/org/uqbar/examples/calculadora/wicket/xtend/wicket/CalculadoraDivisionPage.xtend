@@ -9,6 +9,13 @@ import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.examples.calculadora.wicket.xtend.domain.CalculadoraDivision
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
+import org.apache.wicket.markup.html.panel.Panel
+import org.apache.wicket.markup.html.WebMarkupContainer
+import org.uqbar.commons.model.UserException
+import org.apache.wicket.validation.ValidationError
+import org.uqbar.wicket.xtend.XForm
+import org.apache.wicket.util.string.interpolator.PropertyVariableInterpolator
+import org.uqbar.wicket.xtend.PropertyValidator
 
 /**
  * @author jfernandes
@@ -17,8 +24,7 @@ class CalculadoraDivisionPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	
 	new() {
-		defaultModel = new CompoundPropertyModel(new CalculadoraDivision())
-		val form = new Form<CalculadoraDivision>("calculadoraForm");
+		val form = new XForm<CalculadoraDivision>("calculadoraForm", new CompoundPropertyModel(new CalculadoraDivision()));
 		this.addChild(form)
 		
 		this.addFields(form)
@@ -26,20 +32,32 @@ class CalculadoraDivisionPage extends WebPage {
 	}
 	
 	def addFields(Form<CalculadoraDivision> form) {
-		form.addChild(new TextField<Double>("dividendo"))
-		form.addChild(new TextField<Double>("divisor"))
+		form.addChild(crearDividendoTextField(form))
+		form.addChild(crearDivisorTextField(form))
 		form.addChild(new Label("resultado"))
 		form.addChild(new FeedbackPanel("feedbackPanel"))
 	}
 	
-	def addActions(Form<CalculadoraDivision> form) {
-		val button = new XButton("dividir")
-		button.onClick = [| calculadora.dividir ]
-		form.addChild(button)
+	def crearDividendoTextField(Form<CalculadoraDivision> form) {
+		// dividendo
+		val dividendoTextField = new TextField<Double>("dividendo")
+		// agregamos un validator
+		dividendoTextField.add([validatable |
+			form.modelObject.validarDividendo(validatable.value) 
+		])
+		return dividendoTextField
 	}
 	
-	def getCalculadora() {
-		this.getDefaultModelObject() as CalculadoraDivision;
+	def crearDivisorTextField(Form<CalculadoraDivision> form) {
+		val divisorTextField = new TextField<Double>("divisor")
+		divisorTextField.add(new PropertyValidator)  // validator generico, llama a un método del dominio validarXXXX()
+		return divisorTextField
+	}
+	
+	def addActions(Form<CalculadoraDivision> form) {
+		val button = new XButton("dividir")
+		button.onClick = [| form.modelObject.dividir ]
+		form.addChild(button)
 	}
 
 }
