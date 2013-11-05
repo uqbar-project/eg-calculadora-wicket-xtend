@@ -7,15 +7,10 @@ import org.apache.wicket.markup.html.form.TextField
 import org.apache.wicket.markup.html.panel.FeedbackPanel
 import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.examples.calculadora.wicket.xtend.domain.CalculadoraDivision
+import org.uqbar.wicket.xtend.PropertyValidator
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
-import org.apache.wicket.markup.html.panel.Panel
-import org.apache.wicket.markup.html.WebMarkupContainer
-import org.uqbar.commons.model.UserException
-import org.apache.wicket.validation.ValidationError
 import org.uqbar.wicket.xtend.XForm
-import org.apache.wicket.util.string.interpolator.PropertyVariableInterpolator
-import org.uqbar.wicket.xtend.PropertyValidator
 
 /**
  * @author jfernandes
@@ -24,7 +19,7 @@ class CalculadoraDivisionPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	
 	new() {
-		val form = new XForm<CalculadoraDivision>("calculadoraForm", new CompoundPropertyModel(new CalculadoraDivision()));
+		val form = new XForm<CalculadoraDivision>("calculadoraForm", new CompoundPropertyModel(new CalculadoraDivision))
 		this.addChild(form)
 		
 		this.addFields(form)

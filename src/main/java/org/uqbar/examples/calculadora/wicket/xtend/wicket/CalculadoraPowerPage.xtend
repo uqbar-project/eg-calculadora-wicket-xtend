@@ -1,8 +1,6 @@
 package org.uqbar.examples.calculadora.wicket.xtend.wicket
 
 import org.apache.wicket.markup.html.WebPage
-import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.examples.calculadora.wicket.xtend.domain.CalculadoraDivision
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 
@@ -31,7 +29,7 @@ class CalculadoraPowerPage extends WebPage {
 	}
 	
 	def getCalculadora() {
-		this.getDefaultModelObject() as CalculadoraDivision;
+		this.defaultModelObject as CalculadoraDivision
 	}
 	
 }
