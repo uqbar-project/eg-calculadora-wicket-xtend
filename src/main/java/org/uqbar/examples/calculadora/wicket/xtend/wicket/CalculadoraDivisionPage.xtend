@@ -17,42 +17,43 @@ import org.uqbar.wicket.xtend.XForm
  */
 class CalculadoraDivisionPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
-	
+
 	new() {
 		val form = new XForm<CalculadoraDivision>("calculadoraForm", new CompoundPropertyModel(new CalculadoraDivision))
 		this.addChild(form)
-		
 		this.addFields(form)
 		this.addActions(form)
 	}
-	
-	def addFields(Form<CalculadoraDivision> form) {
+
+	def void addFields(Form<CalculadoraDivision> form) {
 		form.addChild(crearDividendoTextField(form))
 		form.addChild(crearDivisorTextField(form))
 		form.addChild(new Label("resultado"))
 		form.addChild(new FeedbackPanel("feedbackPanel"))
 	}
-	
+
+	// dividendo
 	def crearDividendoTextField(Form<CalculadoraDivision> form) {
-		// dividendo
-		val dividendoTextField = new TextField<Double>("dividendo")
-		// agregamos un validator
-		dividendoTextField.add([validatable |
-			form.modelObject.validarDividendo(validatable.value) 
-		])
-		return dividendoTextField
+		new TextField<Double>("dividendo") => [
+			add(
+				[ validatable |
+					form.modelObject.validarDividendo(validatable.value) // agregamos un validador específico
+				])
+		]
 	}
-	
+
 	def crearDivisorTextField(Form<CalculadoraDivision> form) {
-		val divisorTextField = new TextField<Double>("divisor")
-		divisorTextField.add(new PropertyValidator)  // validator generico, llama a un método del dominio validarXXXX()
-		return divisorTextField
+		new TextField<Double>("divisor") => [
+			add(new PropertyValidator) // validator generico, llama a un método del dominio validarXXXX()
+		]
 	}
-	
-	def addActions(Form<CalculadoraDivision> form) {
-		val button = new XButton("dividir")
-		button.onClick = [| form.modelObject.dividir ]
-		form.addChild(button)
+
+	def void addActions(Form<CalculadoraDivision> form) {
+		form.addChild(
+			new XButton("dividir") => [
+				onClick = [|form.modelObject.dividir]
+			]
+		)
 	}
 
 }
