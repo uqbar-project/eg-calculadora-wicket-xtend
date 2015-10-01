@@ -1,6 +1,7 @@
 package org.uqbar.examples.calculadora.wicket.xtend.domain
 
 import java.io.Serializable
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.UserException
 
 /**
@@ -8,10 +9,11 @@ import org.uqbar.commons.model.UserException
  * 
  * @author jfernandes
  */
+@Accessors
 class CalculadoraDivision implements Serializable {
-	@Property double dividendo
-	@Property double divisor
-	@Property double resultado
+	double dividendo
+	double divisor
+	double resultado
 	
 	def void dividir() {
 		validarDivisor(this.divisor)
@@ -26,7 +28,7 @@ class CalculadoraDivision implements Serializable {
 
 	def void setDividendo(double dividendo) {
 		this.validarDividendo(dividendo)
-		this._dividendo = dividendo
+		this.dividendo = dividendo
 	}
 
 	def void validarDividendo(Double dividendo) {
@@ -37,7 +39,7 @@ class CalculadoraDivision implements Serializable {
 
 	def void setDivisor(double divisor) {
 		validarDivisor(divisor)
-		this._divisor = divisor
+		this.divisor = divisor
 	}
 	
 }
