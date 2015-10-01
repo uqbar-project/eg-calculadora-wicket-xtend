@@ -26,10 +26,12 @@ class CalculadoraDivisionPage extends WebPage {
 	}
 
 	def void addFields(Form<CalculadoraDivision> form) {
-		form.addChild(crearDividendoTextField(form))
-		form.addChild(crearDivisorTextField(form))
-		form.addChild(new Label("resultado"))
-		form.addChild(new FeedbackPanel("feedbackPanel"))
+		form => [
+			addChild(crearDividendoTextField(form))
+			addChild(crearDivisorTextField(form))
+			addChild(new Label("resultado"))
+			addChild(new FeedbackPanel("feedbackPanel"))
+		]
 	}
 
 	// dividendo
