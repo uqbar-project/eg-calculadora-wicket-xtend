@@ -19,7 +19,9 @@ class CalculadoraDivisionPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
 	new() {
-		val form = new XForm<CalculadoraDivision>("calculadoraForm", new CompoundPropertyModel(new CalculadoraDivision))
+		val form = new XForm<CalculadoraDivision>("calculadoraForm", 
+			new CompoundPropertyModel(new CalculadoraDivision)
+		)
 		this.addChild(form)
 		this.addFields(form)
 		this.addActions(form)
